@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { dataAboutCity } from "./data";
-import CitySights from "./CitySights";
+import { data } from "./data";
+import Carousel from "./Carousel";
 
 function Cities() {
-  const [cities, setCities] = useState(dataAboutCity);
+  const [cities, setCities] = useState(data);
 
   const removeCity = (id) => {
     let newList = cities.filter(city => city.id !== id)
@@ -14,11 +14,11 @@ function Cities() {
   return(
     <div>
       <div className="container">
-        <h1>Cities I want to visit</h1>
+        <h1>{cities.length} Cities I want to visit</h1>
       </div>
       
       {cities.map((item => {
-        const {id, city, country, description} = item;
+        const {id, city, country, images, description} = item;
 
         return(
           <div key={id}>
@@ -31,7 +31,7 @@ function Cities() {
             </div>
 
             <div className="container">            
-              <CitySights cityName={city} />            
+              <Carousel images={images} />            
             </div>
 
             <div className="container">
